@@ -1,3 +1,4 @@
+@extends('adminlte::page')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -83,24 +84,24 @@
                 <div class="title m-b-md col-6">
                     Personas  
                 </div>
-                <div class="col-6"><a href="{{route('persona.create')}}"><small>nuevo</small></a>
+                <div class="col-2"><a href="{{route('persona.create')}}"><i class="fas fa-user-plus"></i><small>nuevo</small></a>
                 </div>
                 
                 <div class="links">
-                  <table>
-                  @foreach ($personas as $imagen)
-                <div class="col-sm-5">
+                  <table class="col-5">
+                  @foreach ($personas as $persona)
+                <div class="col-sm-8">
                     <div class="card">
                        
                         <div class="card-body">
 
-                            <form action="{{route('persona.destroy', $imagen)}}" method="post">
+                            <form action="{{route('persona.destroy', $persona)}}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-danger" alt="eliminar"> - </button>
+                                <button class="btn btn-danger" alt="eliminar"> <i class="fas fa-user-minus"></i> </button>
                             </form>
-                            <a href="{{route('persona.show', $imagen->id)}}">
-                            {{$imagen->name}} {{$imagen->dpto_id}}
+                            <a href="{{route('persona.show', $persona->id)}}">
+                            {{$persona->name}} {{$persona->dpto_id}}
                             </a>
                         </div>
                     </div>
